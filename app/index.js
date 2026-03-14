@@ -12,18 +12,34 @@ const bot = new TelegramBot(token, { polling: true });
 
 //   bot.sendMessage(chatId, resp);
 // });
-
-bot.on("message", (msg) => {
+bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
 
-  bot.sendMessage(chatId, "Received your message", {
+  bot.sendMessage(chatId, "Getting started console logs!", {
     reply_markup: {
-      keyboard: [
-        ["A", "B"],
-        ["C", "D"],
+      inline_keyboard: [
+        [{ text: "Неявное приведение типов", callback_data: "types" }],
       ],
     },
   });
 });
 
-bot.onText;
+bot.on("message", (msg) => {
+  const chatId = msg.chat.id;
+
+  if (msg.text && !msg.text.startsWith("/")) {
+    const text = `\`\`\`javascript
+console.log([] === ![])
+    \`\`\``;
+    console.log(eval("[] === ![]"));
+    bot.sendMessage(chatId, text, {
+      parse_mode: "MarkdownV2",
+      reply_markup: {
+        keyboard: [
+          ["A", "B"],
+          ["C", "D"],
+        ],
+      },
+    });
+  }
+});
