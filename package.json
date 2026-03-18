@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/index.ts",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "migration:generate": "npm run typeorm -- migration:generate -d src/data-source.ts src/migrations/$npm_config_name",
+    "migration:run": "npm run typeorm -- migration:run -d src/data-source.ts",
+    "migration:revert": "npm run typeorm migration:revert -- -d src/data-source.ts"
   },
   "repository": {
     "type": "git",
@@ -18,7 +23,17 @@
   "homepage": "https://github.com/antonfuflygin/js-console-bot#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.3.1",
+    "node-telegram-bot-api": "^0.67.0",
+    "pg": "^8.20.0",
+    "reflect-metadata": "^0.2.2",
+    "tsconfig-paths": "^4.2.0",
+    "typeorm": "^0.3.28"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
     "@types/node-telegram-bot-api": "^0.64.14",
-    "node-telegram-bot-api": "^0.67.0"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }
