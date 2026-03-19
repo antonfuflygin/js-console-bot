@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from './User';
 
-@Entity('Tasks')
+@Entity('tasks')
 export class Task {
     @PrimaryGeneratedColumn()
     id: number;
@@ -11,9 +11,6 @@ export class Task {
 
     @Column()
     isCompleted: boolean;
-
-    @Column()
-    hasBeenShown: boolean;
 
     @ManyToMany(() => User, (user) => user.tasks)
     users: User[];

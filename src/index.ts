@@ -5,7 +5,7 @@ import { AppDataSource } from './data-source';
 import { Task } from './entity/Task';
 import { Repository } from 'typeorm';
 
-const token = '8672001788:AAFfchuzjilMUe5IKMINYIVh9c8uDylForc';
+const token = process.env.TELEGRAM_BOT_TOKEN || '';
 
 const bot = new TelegramBot(token, { polling: true });
 
