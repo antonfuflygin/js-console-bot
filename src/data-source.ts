@@ -3,6 +3,7 @@
 import * as dotenv from 'dotenv';
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
+import { Task } from './entities/Task';
 
 dotenv.config();
 
@@ -14,6 +15,6 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || '',
   synchronize: true,
-  entities: ['src/entity/*.ts'],
+  entities: ['src/entities/*.ts'],
   migrations: ['src/migrations/*.ts'],
 });
